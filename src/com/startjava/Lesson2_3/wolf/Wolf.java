@@ -1,4 +1,4 @@
-package com.startjava.wolf;
+package com.startjava.Lesson2_3.wolf;
 
 public class Wolf {
 
