@@ -33,9 +33,7 @@ public class Calculator {
         return operation;
     }
 
-    public void calculate() {
-        String inputString = scanner.nextLine();
-        String[] inputExpression = inputString.split(" ");
+    public void calculate(String[] inputExpression) {
         num1 = Integer.parseInt(inputExpression[0]);
         operation = inputExpression[1].charAt(0);
         num2 = Integer.parseInt(inputExpression[2]);

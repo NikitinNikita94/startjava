@@ -10,7 +10,9 @@ public class CalculatorTest {
         String answer = "да";
         while (answer.equals("да")) {
             System.out.println("Введите данные (пример: 2 * 8): ");
-            calculator.calculate();
+            String inputString = scanner.nextLine();
+            String[] inputExpression = inputString.split(" ");
+            calculator.calculate(inputExpression);
             do {
                 System.out.println("Хотите продолжить? [да/нет]:");
                 answer = scanner.next();
