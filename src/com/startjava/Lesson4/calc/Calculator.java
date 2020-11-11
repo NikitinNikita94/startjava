@@ -1,10 +1,13 @@
 package com.startjava.Lesson4.calc;
 
+import java.util.Scanner;
+
 public class Calculator {
 
     private int num1;
     private int num2;
     private char operation;
+    Scanner scanner = new Scanner(System.in);
 
     public void setNum1(int num1) {
         this.num1 = num1;
@@ -31,6 +34,12 @@ public class Calculator {
     }
 
     public void calculate() {
+        String inputString = scanner.nextLine();
+        String[] inputExpression = inputString.split(" ");
+        num1 = Integer.parseInt(inputExpression[0]);
+        operation = inputExpression[1].charAt(0);
+        num2 = Integer.parseInt(inputExpression[2]);
+
         switch (operation) {
             case '+':
                 System.out.println(num1 + num2);
