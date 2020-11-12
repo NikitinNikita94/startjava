@@ -1,13 +1,10 @@
 package com.startjava.Lesson4.calc;
 
-import java.util.Scanner;
-
 public class Calculator {
 
     private int num1;
     private int num2;
     private char operation;
-    Scanner scanner = new Scanner(System.in);
 
     public void setNum1(int num1) {
         this.num1 = num1;

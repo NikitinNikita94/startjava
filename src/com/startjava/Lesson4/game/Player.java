@@ -6,14 +6,6 @@ public class Player {
     private int number;
     private int [] array = new int [10];
 
-    public void setArray(int[] array) {
-        this.array = array;
-    }
-
-    public int[] getArray() {
-        return array;
-    }
-
     public Player(String name) {
         this.name = name;
     }
@@ -28,6 +20,14 @@ public class Player {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public int[] getArray() {
+        return array;
+    }
+
+    public void setArray(int[] array) {
+        this.array = array;
     }
 }
 

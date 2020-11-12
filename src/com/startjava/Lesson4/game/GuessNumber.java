@@ -27,14 +27,16 @@ public class GuessNumber {
                 arrayPlayer1[i] = player1.getNumber();
                 player1.setArray(Arrays.copyOf(arrayPlayer1, arrayPlayer1.length));
                 checkout = compareNumbers(player1.getNumber());
-                if (i == 9 && checkout != true) {
-                    System.out.println("У игрока" + player1.getName() + "закончились попытки");
+                if (i == lastArrayNum() && checkout != true) {
+                    System.out.println("У игрока " + player1.getName() + " закончились попытки");
                     checkout = true;
                     break;
                 }
                 if (checkout == true) {
                     System.out.println("Игрок " + player1.getName() + " угадал число " + unknowNumber + " с " + trysCount + " попытки");
-                    player1.setArray(arrayPlayer1);
+                    inputArray(player1.getArray());
+                    System.out.println("");
+                    inputArray(player2.getArray());
                     break;
                 }
 
@@ -43,14 +45,17 @@ public class GuessNumber {
                 arrayPlayer2[i] = player2.getNumber();
                 player1.setArray(Arrays.copyOf(arrayPlayer2, arrayPlayer2.length));
                 checkout = compareNumbers(player2.getNumber());
-                if (i == 9 && checkout != true) {
+                if (i == lastArrayNum() && checkout != true) {
                     System.out.println("У игрока " + player2.getName() + " закончились попытки");
                     checkout = true;
                     break;
                 }
                 if (checkout == true) {
                     System.out.println("Игрок " + player2.getName() + " угадал число " + unknowNumber + " с " + trysCount + " попытки ");
-                    player2.setArray(arrayPlayer2);
+                    player2.setArray(Arrays.copyOf(arrayPlayer2, arrayPlayer2.length));
+                    inputArray(player2.getArray());
+                    System.out.println("");
+                    inputArray(player1.getArray());
                     break;
                 }
             }
@@ -65,5 +70,16 @@ public class GuessNumber {
         trysCount++;
         System.out.println("Загаданное число " + (number < unknowNumber ? "больше" : "меньше"));
         return checkout = false;
+    }
+
+    public void inputArray(int [] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+    }
+
+    public int lastArrayNum() {
+        int lastNum = player1.getArray().length - 1;
+        return lastNum;
     }
 }

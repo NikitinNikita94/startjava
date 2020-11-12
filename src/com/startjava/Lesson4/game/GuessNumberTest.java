@@ -17,8 +17,6 @@ public class GuessNumberTest {
         while (answer.equals("да")) {
             System.out.println("У вас 10 попыток");
             guess.start();
-            System.out.println(player1.getName() + Arrays.toString(player1.getArray()));
-            System.out.println(player2.getName() + Arrays.toString(player2.getArray()));
             do {
                 System.out.println("Хотите продолжить? [да/нет]:");
                 answer = scanner.next();
