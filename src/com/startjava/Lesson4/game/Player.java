@@ -27,7 +27,9 @@ public class Player {
     }
 
     public void setArray(int[] array) {
-        this.array = array;
+        for (int i = 0; i < array.length; i++) {
+            this.array[i] = number;
+        }
     }
 }
 
