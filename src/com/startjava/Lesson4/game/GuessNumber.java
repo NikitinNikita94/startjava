@@ -20,43 +20,39 @@ public class GuessNumber {
             unknowNumber = (int) (Math.random() * 101);
             System.out.println("Игрок  " + player1.getName() + " введите число:");
             for (int i = 0; i < 10; i++) {
-                player1.setNumber(scanner.nextInt());
-                player1.setEnteredNumbers(player1.getNumber());
-                checkout = compareNumbers(player1.getNumber());
-                if (i == player1.lastArrayNum() && checkout != true) {
+                checkout = compareNumbers(player1, player1.setEnteredNumber(scanner.nextInt()));
+                if (i == player1.getLastNumber() && checkout != true) {
                     System.out.println("У игрока " + player1.getName() + " закончились попытки");
                     checkout = true;
                     break;
                 }
                 if (checkout == true) {
                     System.out.println("Игрок " + player1.getName() + " угадал число " + unknowNumber + " с " + trysCount + " попытки");
-                    player1.copyGetEnteredNumbers();
-                    System.out.println(" ");
-                    player2.copyGetEnteredNumbers();
+                    for (int j = 0; j < player1.getEnteredNumbers().length; j++) {
+                        System.out.print(player1.getEnteredNumbers()[j] + " ");
+                    }
                     break;
                 }
 
                 System.out.println("Игрок  " + player2.getName() + " введите число:");
-                player2.setNumber(scanner.nextInt());
-                player2.setEnteredNumbers(player2.getNumber());
-                checkout = compareNumbers(player2.getNumber());
-                if (i == player2.lastArrayNum() && checkout != true) {
+                checkout = compareNumbers(player2, player2.setEnteredNumber(scanner.nextInt()));
+                if (i == player2.getLastNumber() && checkout != true) {
                     System.out.println("У игрока " + player2.getName() + " закончились попытки");
                     checkout = true;
                     break;
                 }
                 if (checkout == true) {
                     System.out.println("Игрок " + player2.getName() + " угадал число " + unknowNumber + " с " + trysCount + " попытки ");
-                    player2.copyGetEnteredNumbers();
-                    System.out.println(" ");
-                    player1.copyGetEnteredNumbers();
+                    for (int j = 0; j < player2.getEnteredNumbers().length; j++) {
+                        System.out.print(player2.getEnteredNumbers()[j] + " ");
+                    }
                     break;
                 }
             }
         } while(checkout == false);
     }
 
-    public boolean compareNumbers(int number) {
+    public boolean compareNumbers(Player player, int number) {
         if (number == unknowNumber) {
             trysCount++;
             return checkout = true;

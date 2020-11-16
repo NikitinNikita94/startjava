@@ -5,9 +5,8 @@ import java.util.Arrays;
 public class Player {
 
     private String name;
-    private int number;
-    private int [] enteredNumbers = new int [10];
-    private int count;
+    private int[] enteredNumbers = new int[10];
+    private int countAttempts;
 
     public Player(String name) {
         this.name = name;
@@ -17,35 +16,18 @@ public class Player {
         return name;
     }
 
-    public int getNumber() {
+    public int[] getEnteredNumbers() {
+        return Arrays.copyOf(enteredNumbers, enteredNumbers.length);
+    }
+
+    public int setEnteredNumber(int number) {
+        enteredNumbers[countAttempts] = number;
+        countAttempts++;
         return number;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
-    public int[] getEnteredNumbers() {
-        return enteredNumbers;
-    }
-
-    public void setEnteredNumbers(int number) {
-        this.enteredNumbers[count] = number;
-        count++;
-
-    }
-    
-    public int[] copyGetEnteredNumbers() {
-        int [] x = Arrays.copyOf(getEnteredNumbers(), getEnteredNumbers().length);
-        for (int j = 0; j < x.length; j++) {
-            System.out.print(x[j] + " ");
-        }
-        return x;
-    }
-
-    public int lastArrayNum() {
-        int lastNum = getEnteredNumbers().length - 1;
-        return lastNum;
+    public int getLastNumber() {
+        return enteredNumbers.length - 1;
     }
 }
 
