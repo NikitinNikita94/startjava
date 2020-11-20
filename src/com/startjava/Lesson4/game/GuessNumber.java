@@ -16,10 +16,33 @@ public class GuessNumber {
     }
 
     public void start() {
-        unknowNumber = (int) (Math.random() * 101);
         do {
-            checkNumber(player1, player2);
+            checkPlayer(player1);
+            checkPlayer(player2);
         } while(checkout == false);
+    }
+
+    private void checkPlayer(Player player) {
+        unknowNumber = (int) (Math.random() * 101);
+        for (int i = 0; i < 10; i++) {
+            inputNumber(player);
+            checkout = compareNumbers(player, player.getEnteredNumber()[i]);
+            if (i == player.getEnteredNumber().length && checkout != true) {
+                System.out.println("У игрока " + player.getName() + " закончились попытки");
+                checkout = true;
+                break;
+            }
+            if (checkout == true) {
+                System.out.println("Игрок " + player.getName() + " угадал число " + unknowNumber + " с " + trysCount + " попытки");
+                showEnteredNumbers(player);
+                break;
+            }
+        }
+    }
+
+    private void inputNumber(Player player) {
+        System.out.println("Игрок  " + player.getName() + " введите число:");
+        player.setEnteredNumber(scanner.nextInt());
     }
 
     private boolean compareNumbers(Player player, int number) {
@@ -32,44 +55,9 @@ public class GuessNumber {
         return checkout = false;
     }
 
-    private void enteringNumber(Player player) {
-        System.out.println("Игрок  " + player.getName() + " введите число:");
-        player.setEnteredNumber(scanner.nextInt());
-    }
-
-    private void checkNumber(Player player1, Player player2) {
-        for (int i = 0; i < 10; i++) {
-            enteringNumber(player1);
-            checkout = compareNumbers(player1, player1.getEnteredNumber()[i]);
-            if (i == player1.getEnteredNumber().length && checkout != true) {
-                System.out.println("У игрока " + player1.getName() + " закончились попытки");
-                checkout = true;
-                break;
-            }
-            if (checkout == true) {
-                System.out.println("Игрок " + player1.getName() + " угадал число " + unknowNumber + " с " + trysCount + " попытки");
-                outputArray(player1);
-                break;
-            }
-
-            enteringNumber(player2);
-            checkout = compareNumbers(player2, player2.getEnteredNumber()[i]);
-            if (i == player2.getEnteredNumber().length && checkout != true) {
-                System.out.println("У игрока " + player2.getName() + " закончились попытки");
-                checkout = true;
-                break;
-            }
-            if (checkout == true) {
-                System.out.println("Игрок " + player2.getName() + " угадал число " + unknowNumber + " с " + trysCount + " попытки");
-                outputArray(player2);
-                break;
-            }
-        }
-    }
-
-    private void outputArray(Player player) {
-        for (int i = 0; i < player.getEnteredNumber().length; i++) {
-            System.out.print(player.getEnteredNumber()[i] + " ");
+    private void showEnteredNumbers(Player player) {
+        for (int enteredNumber : player.getEnteredNumber()) {
+            System.out.print(enteredNumber + " ");
         }
         System.out.println(" ");
     }
