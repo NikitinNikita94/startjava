@@ -33,8 +33,9 @@ public class Player {
         return countAttempts;
     }
 
-    public void setCountAttempts() {
-        this.countAttempts = countAttempts;
+    public void initNumbers() {
+        Arrays.fill(enteredNumbers, -1);
+        countAttempts = 0;
     }
 }
 
