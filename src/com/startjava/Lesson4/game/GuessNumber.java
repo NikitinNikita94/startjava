@@ -15,26 +15,26 @@ public class GuessNumber {
 
     public void start() {
         unknowNumber = (int) (Math.random() * 101);
-        do {
             for (int i = 0; i < 10; i++) {
-                makeMove(player1);
-                makeMove(player2);
+                if (makeMove(player1) == true) {
+                    break;
+                }
+                if (makeMove(player2) == true) {
+                    break;
+                }
             }
-        } while(false);
     }
 
     private boolean makeMove(Player player) {
-                inputNumber(player);
-                compareNumbers(player);
-                if (player.getEnteredNumber()[player.getCountAttempts()] == player.getEnteredNumber().length) {
-                    System.out.println("У игрока " + player.getName() + " закончились попытки");
-                    return true;
-                }
-                if (player.getLastNumber() == unknowNumber) {
-                    System.out.println("Игрок " + player.getName() + " угадал число " + unknowNumber + " с " + player.getCountAttempts() + " попытки");
-                    showEnteredNumbers(player);
-                    return true;
-                }
+        inputNumber(player);
+        if (compareNumbers(player) == true) {
+            System.out.println("Игрок " + player.getName() + " угадал число " + unknowNumber + " с " + player.getCountAttempts() + " попытки");
+            showEnteredNumbers(player);
+            return true;
+        }
+        if (player.getEnteredNumbers().length == 10) {
+            System.out.println("У игрока " + player.getName() + " закончились попытки");
+        }
         return false;
     }
 
@@ -45,16 +45,16 @@ public class GuessNumber {
 
     private boolean compareNumbers(Player player) {
         if (player.getLastNumber() == unknowNumber) {
-            player.setCountAttempts(+1);
+            player.setCountAttempts(1);
             return true;
         }
-        player.setCountAttempts(+1);
-        System.out.println("Загаданное число  " + (player.getLastNumber()< unknowNumber ? "больше" : "меньше"));
+        player.setCountAttempts(1);
+        System.out.println("Загаданное число  " + (player.getLastNumber() < unknowNumber ? "больше" : "меньше"));
         return false;
     }
 
     private void showEnteredNumbers(Player player) {
-        for (int enteredNumber : player.getEnteredNumber()) {
+        for (int enteredNumber : player.getEnteredNumbers()) {
             System.out.print(enteredNumber + " ");
         }
         System.out.println(" ");

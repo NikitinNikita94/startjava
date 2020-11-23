@@ -6,7 +6,7 @@ public class Player {
 
     private String name;
     private int[] enteredNumbers = new int[10];
-    private int countAttempts = 0;
+    private int countAttempts;
 
     public Player(String name) {
         this.name = name;
@@ -16,7 +16,7 @@ public class Player {
         return name;
     }
 
-    public int[] getEnteredNumber() {
+    public int[] getEnteredNumbers() {
         return Arrays.copyOf(enteredNumbers, countAttempts);
     }
 
@@ -26,7 +26,7 @@ public class Player {
     }
 
     public int getLastNumber() {
-        return enteredNumbers[countAttempts++];
+        return enteredNumbers[0];
     }
 
     public int getCountAttempts() {
@@ -34,7 +34,7 @@ public class Player {
     }
 
     public void setCountAttempts(int countAttempts) {
-        this.countAttempts = countAttempts;
+        this.countAttempts += countAttempts;
     }
 }
 
