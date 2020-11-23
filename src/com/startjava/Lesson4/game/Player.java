@@ -26,15 +26,15 @@ public class Player {
     }
 
     public int getLastNumber() {
-        return enteredNumbers[0];
+        return enteredNumbers[countAttempts - 1];
     }
 
     public int getCountAttempts() {
         return countAttempts;
     }
 
-    public void setCountAttempts(int countAttempts) {
-        this.countAttempts += countAttempts;
+    public void setCountAttempts() {
+        this.countAttempts = countAttempts;
     }
 }
 
