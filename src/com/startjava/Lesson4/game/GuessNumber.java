@@ -16,8 +16,8 @@ public class GuessNumber {
     public void start() {
         unknowNumber = (int) (Math.random() * 101);
         System.out.println("У вас 10 попыток");
-        player1.initNumbers();
-        player2.initNumbers();
+        player1.clearNumbers();
+        player2.clearNumbers();
         for (int i = 0; i < 10; i++) {
             if (makeMove(player1)) {
                 break;
@@ -26,19 +26,20 @@ public class GuessNumber {
                 break;
             }
         }
+
+        showEnteredNumbers(player1);
+        showEnteredNumbers(player2);
     }
 
     private boolean makeMove(Player player) {
-        if (player.getCountAttempts() < 9) {
+        if (player.getCountAttempts() < 10) {
             inputNumber(player);
             if (compareNumbers(player)) {
                 System.out.println("Игрок " + player.getName() + " угадал число " + unknowNumber + " с " + player.getCountAttempts() + " попытки");
-                showEnteredNumbers(player1, player2);
                 return true;
             }
         } else {
             System.out.println("У игрока " + player.getName() + " закончились попытки");
-            showEnteredNumbers(player1, player2);
         }
         return false;
     }
@@ -56,13 +57,8 @@ public class GuessNumber {
         return false;
     }
 
-    private void showEnteredNumbers(Player player1, Player player2) {
-        for (int enteredNumber : player1.getEnteredNumbers()) {
-            System.out.print(enteredNumber + " ");
-        }
-        System.out.println(" ");
-
-        for (int enteredNumber : player2.getEnteredNumbers()) {
+    private void showEnteredNumbers(Player player) {
+        for (int enteredNumber : player.getEnteredNumbers()) {
             System.out.print(enteredNumber + " ");
         }
         System.out.println(" ");

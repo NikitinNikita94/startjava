@@ -33,9 +33,11 @@ public class Player {
         return countAttempts;
     }
 
-    public void initNumbers() {
-        Arrays.fill(enteredNumbers, -1);
-        countAttempts = 0;
+    public void clearNumbers() {
+        for(int i = 0; i < countAttempts; i++) {
+            Arrays.fill(getEnteredNumbers(), countAttempts);
+            countAttempts = 0;
+        }
     }
 }
 
