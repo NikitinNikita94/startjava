@@ -8,16 +8,19 @@ public class CalculatorTest {
         Calculator calculator = new Calculator();
 
         String answer = "да";
-        while (answer.equals("да")) {
+        do {
             System.out.println("Введите данные (пример: 2 * 8): ");
             String inputString = scanner.nextLine();
             String[] inputExpression = inputString.split(" ");
-            calculator.calculate(inputExpression);
-            do {
-                System.out.println("Хотите продолжить? [да/нет]:");
-                answer = scanner.next();
-            } while (!answer.equals("да") && !answer.equals("нет"));
-        }
+            try {
+                calculator.calculate(inputExpression);
+            } catch (ArithmeticException e) {
+                System.out.println("Ошибка : делить на ноль нельзя" + e);
+            }
+
+            System.out.println("Хотите продолжить? [да/нет]:");
+            answer = scanner.nextLine();
+        } while (answer.equals("да"));
     }
 }
 
